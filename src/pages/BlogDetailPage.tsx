@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useBlog } from '../hooks/useBlog';
 import Skeleton from '../components/Skeleton';
+import { richTextToPlain } from '../helpers/richTextToPlain';
 
 function ArticleSkeleton() {
   return (
@@ -78,8 +79,11 @@ export default function BlogDetailPage() {
           {/* Rich text content */}
           <div
             className="prose prose-rose max-w-none text-gray-700 leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: article.content }}
-          />
+          >
+            <p>
+              {richTextToPlain(article.content)}
+              </p>
+          </div>
         </article>
       )}
     </section>

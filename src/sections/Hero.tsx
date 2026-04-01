@@ -1,6 +1,7 @@
 import { useProfile } from '../hooks/useProfile';
 import { buildWhatsAppLink } from '../services/api';
 import Button from '../components/Button';
+import { richTextToPlain } from '../helpers/richTextToPlain';
 
 export default function Hero() {
   const { data: profile } = useProfile();
@@ -25,7 +26,7 @@ export default function Hero() {
           {profile?.name ?? ''}
         </h1>
         <p className="text-lg md:text-xl text-white/90 drop-shadow">
-          {profile?.description ?? ''}
+          {richTextToPlain(profile?.description ?? null)}
         </p>
         {whatsappLink && (
           <Button href={whatsappLink} variant="whatsapp" className="text-lg px-8 py-4">

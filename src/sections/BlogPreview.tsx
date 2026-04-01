@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useBlog } from '../hooks/useBlog';
 import type { BlogArticle } from '../types';
+import { richTextToPlain } from '../helpers/richTextToPlain';
 
 export default function BlogPreview() {
   const { data } = useBlog();
@@ -40,7 +41,7 @@ export default function BlogPreview() {
                 <h3 className="font-semibold text-gray-800 group-hover:text-pink-600 transition duration-300">
                   {article.title}
                 </h3>
-                <p className="text-sm text-gray-500 line-clamp-2">{article.content}</p>
+                <p className="text-sm text-gray-500 line-clamp-2">{richTextToPlain(article?.content) || ""}</p>
               </div>
             </button>
           ))}

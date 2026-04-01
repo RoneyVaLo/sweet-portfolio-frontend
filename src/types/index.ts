@@ -11,10 +11,20 @@ export interface Post {
   description: string;
 }
 
+export interface RichTextChild {
+  text: string;
+  type: string;
+}
+
+export interface RichTextBlock {
+  type: string;
+  children: RichTextChild[];
+}
+
 export interface Profile {
   id: number;
   name: string;
-  description: string;
+  description: RichTextBlock[] | string | null;
   profileImage: ImageData | null;
   whatsapp: string | null;
   instagram: string | null;

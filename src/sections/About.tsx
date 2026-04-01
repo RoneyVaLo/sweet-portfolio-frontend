@@ -1,3 +1,4 @@
+import { richTextToPlain } from '../helpers/richTextToPlain';
 import { useProfile } from '../hooks/useProfile';
 
 export default function About() {
@@ -27,7 +28,7 @@ export default function About() {
         {/* Text */}
         <div className="flex flex-col gap-4 text-center md:text-left">
           <h2 className="text-3xl font-bold text-gray-800">Sobre nosotros</h2>
-          <p className="text-gray-600 leading-relaxed">{profile?.description ?? ''}</p>
+          <p className="text-gray-600 leading-relaxed">{richTextToPlain(profile?.description ?? null)}</p>
         </div>
       </div>
     </section>

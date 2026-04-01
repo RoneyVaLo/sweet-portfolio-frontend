@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useBlog } from '../hooks/useBlog';
 import Skeleton from '../components/Skeleton';
 import type { BlogArticle } from '../types';
+import { richTextToPlain } from '../helpers/richTextToPlain';
 
 function BlogCardSkeleton() {
   return (
@@ -81,7 +82,7 @@ export default function BlogListPage() {
                   <h2 className="font-semibold text-gray-800 group-hover:text-pink-600 transition duration-300">
                     {article.title}
                   </h2>
-                  <p className="text-sm text-gray-500 line-clamp-3">{article.content}</p>
+                  <p className="text-sm text-gray-500 line-clamp-3">{richTextToPlain(article?.content)}</p>
                 </div>
               </button>
             ))}
