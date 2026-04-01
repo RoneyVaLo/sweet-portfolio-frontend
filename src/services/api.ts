@@ -8,9 +8,10 @@ if (!API_URL) {
 
 // --- Utility helpers ---
 
-export function normalizeStrapi<T>(raw: { id: number; attributes: T }): { id: number } & T {
-  const { id, attributes } = raw;
-  return { id, ...attributes };
+export function normalizeStrapi<T extends object>(raw: { id: number; attributes?: T } & Partial<T>): { id: number } & T {
+  const { id, attributes, ...rest } = raw as { id: number; attributes?: T } & Record<string, unknown>;
+  // Strapi v5 returns fields flat (no attributes), v4 uses attributes
+  return { id, ...(attributes ?? rest) } as { id: number } & T;
 }
 
 export function resolveImageUrl(url: string, base: string): string {
@@ -44,13 +45,17 @@ function normalizeImage(img: ImageData): ImageData {
 
 export const API_Service = {
   async getPosts(): Promise<Post[]> {
-    const response = await apiFetch<StrapiResponse<Omit<Post, 'id'>>>('/api/posts?populate=*');
+    const response = await apiFetch<{ data: Record<string, unknown>[] }>('/api/posts?populate=*');
     const items = Array.isArray(response.data) ? response.data : [response.data];
     return items.map((item) => {
-      const normalized = normalizeStrapi(item);
+      const normalized = normalizeStrapi(item as { id: number } & Record<string, unknown>);
+      // Strapi returns the media field as "image" (array); normalize to "images"
+      const rawImages = (normalized as Record<string, unknown>).image;
+      const imagesArray = Array.isArray(rawImages) ? rawImages : rawImages ? [rawImages] : [];
       return {
-        ...normalized,
-        images: (normalized.images ?? []).map(normalizeImage),
+        id: normalized.id,
+        description: (normalized as Record<string, unknown>).description as string ?? '',
+        images: imagesArray.map((img) => normalizeImage(img as ImageData)),
       };
     });
   },
@@ -66,7 +71,7 @@ export const API_Service = {
   },
 
   async getBlogArticles(): Promise<BlogArticle[]> {
-    const response = await apiFetch<StrapiResponse<Omit<BlogArticle, 'id'>>>('/api/blog?populate=*');
+    const response = await apiFetch<StrapiResponse<Omit<BlogArticle, 'id'>>>('/api/blogs?populate=*');
     const items = Array.isArray(response.data) ? response.data : [response.data];
     return items.map((item) => {
       const normalized = normalizeStrapi(item);
@@ -79,7 +84,7 @@ export const API_Service = {
 
   async getBlogArticleBySlug(slug: string): Promise<BlogArticle> {
     const response = await apiFetch<StrapiResponse<Omit<BlogArticle, 'id'>>>(
-      `/api/blog?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`
+      `/api/blogs?slug=${slug}&populate=*`
     );
     const items = Array.isArray(response.data) ? response.data : [response.data];
     if (items.length === 0) {
