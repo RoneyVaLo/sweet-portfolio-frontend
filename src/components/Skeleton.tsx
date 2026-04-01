@@ -9,7 +9,8 @@ export default function Skeleton({ className = '', count = 1 }: SkeletonProps) {
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
-          className={`animate-pulse rounded-2xl bg-gray-200 ${className}`}
+          className={`animate-pulse rounded-2xl ${className}`}
+          style={{ background: 'var(--brand-blush)' }}
         />
       ))}
     </>

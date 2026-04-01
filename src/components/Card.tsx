@@ -12,7 +12,8 @@ export default function Card({ post, onClick }: CardProps) {
     <button
       type="button"
       onClick={() => onClick(post)}
-      className="group relative w-full overflow-hidden rounded-2xl shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
+      className="group relative w-full overflow-hidden rounded-2xl shadow-sm hover:shadow-lg cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 transition-shadow duration-300"
+      aria-label={post.description}
     >
       {image ? (
         <img
@@ -21,15 +22,15 @@ export default function Card({ post, onClick }: CardProps) {
           width={image.width}
           height={image.height}
           loading="lazy"
-          className="w-full aspect-square object-cover transition duration-300 group-hover:scale-105"
+          className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
         />
       ) : (
-        <div className="w-full aspect-square bg-gray-200 rounded-2xl" />
+        <div className="w-full aspect-square" style={{ background: 'var(--brand-blush)' }} />
       )}
 
       {/* Hover overlay */}
-      <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 rounded-2xl p-4">
-        <p className="text-white text-sm line-clamp-3">{post.description}</p>
+      <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/65 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+        <p className="text-white text-sm leading-snug line-clamp-3">{post.description}</p>
       </div>
     </button>
   );

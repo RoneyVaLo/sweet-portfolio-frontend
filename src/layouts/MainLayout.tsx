@@ -1,20 +1,26 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 export default function MainLayout() {
+  const location = useLocation();
+
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-dvh flex flex-col bg-white">
       {/* Nav */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-rose-100 shadow-sm">
+      <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b" style={{ borderColor: 'var(--brand-blush)' }}>
         <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link
             to="/"
-            className="text-xl font-bold text-pink-600 hover:text-pink-800 transition duration-300"
+            className="text-lg font-semibold tracking-tight transition-colors duration-200"
+            style={{ fontFamily: "'Playfair Display', serif", color: 'var(--brand-deep)' }}
           >
-            🍰 Dulce Portafolio
+            Dulce Portafolio
           </Link>
           <Link
             to="/blog"
-            className="text-sm font-medium text-gray-600 hover:text-pink-600 transition duration-300"
+            className="text-sm font-medium transition-colors duration-200"
+            style={{
+              color: location.pathname.startsWith('/blog') ? 'var(--brand-mauve)' : '#6b7280',
+            }}
           >
             Blog
           </Link>
@@ -27,8 +33,10 @@ export default function MainLayout() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-rose-50 border-t border-rose-100 py-8 px-6 text-center text-sm text-gray-500">
-        <p>© {new Date().getFullYear()} Dulce Portafolio. Todos los derechos reservados.</p>
+      <footer className="border-t py-10 px-6 text-center" style={{ background: 'var(--brand-surface)', borderColor: 'var(--brand-blush)' }}>
+        <p className="text-sm tracking-wide" style={{ color: 'var(--brand-mauve)', opacity: 0.7 }}>
+          © {new Date().getFullYear()} Dulce Portafolio · Todos los derechos reservados
+        </p>
       </footer>
     </div>
   );

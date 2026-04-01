@@ -1,1 +1,23 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* Brand palette — extracted from logo */
+:root {
+  --brand-blush:    #ffd6ee;   /* lightest pink — backgrounds, tints */
+  --brand-pink:     #fa9ad3;   /* mid pink — accents, borders */
+  --brand-rose:     #e87bbf;   /* deeper pink — hover states */
+  --brand-mauve:    #5e3b53;   /* mid mauve — secondary text, icons */
+  --brand-deep:     #2a0c1f;   /* darkest — headings, hero overlay */
+  --brand-surface:  #fdf4f9;   /* near-white tinted surface */
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}

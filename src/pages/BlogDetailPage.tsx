@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import { useBlog } from '../hooks/useBlog';
 import Skeleton from '../components/Skeleton';
 import { richTextToPlain } from '../helpers/richTextToPlain';
@@ -6,15 +7,12 @@ import { richTextToPlain } from '../helpers/richTextToPlain';
 function ArticleSkeleton() {
   return (
     <div className="max-w-3xl mx-auto flex flex-col gap-6">
-      <Skeleton className="w-full h-72 rounded-2xl" />
-      <Skeleton className="h-10 w-3/4" />
+      <Skeleton className="w-full h-72 rounded-3xl" />
+      <Skeleton className="h-10 w-3/4 rounded-xl" />
       <div className="flex flex-col gap-3">
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-5/6" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-4/5" />
-        <Skeleton className="h-4 w-full" />
+        {Array.from({ length: 6 }).map((_, i) => (
+          <Skeleton key={i} className={`h-4 rounded-lg ${i % 3 === 2 ? 'w-4/5' : 'w-full'}`} />
+        ))}
       </div>
     </div>
   );
@@ -28,61 +26,56 @@ export default function BlogDetailPage() {
 
   return (
     <section className="py-16 px-6 bg-white min-h-screen">
-      {/* Loading state */}
-      {loading && <ArticleSkeleton />}
+      {loading && (
+        <div className="max-w-3xl mx-auto">
+          <ArticleSkeleton />
+        </div>
+      )}
 
-      {/* Error state */}
       {!loading && (error || !article) && (
-        <div className="max-w-3xl mx-auto text-center py-16 flex flex-col items-center gap-4">
-          <p className="text-red-500 text-lg font-medium">
+        <div className="max-w-3xl mx-auto text-center py-20 flex flex-col items-center gap-4">
+          <p className="font-medium mb-1" style={{ color: 'var(--brand-rose)' }}>
             {error ?? 'No se encontró el artículo.'}
           </p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-400 text-sm">
             El artículo que buscas no existe o no está disponible.
           </p>
           <Link
             to="/blog"
-            className="mt-2 inline-flex items-center gap-2 text-pink-600 hover:text-pink-800 font-medium transition duration-300"
+            className="mt-2 inline-flex items-center gap-1.5 font-medium text-sm transition-colors duration-200"
+            style={{ color: 'var(--brand-mauve)' }}
           >
-            ← Volver al blog
+            <ArrowLeft size={15} /> Volver al blog
           </Link>
         </div>
       )}
 
-      {/* Article content */}
       {!loading && !error && article && (
         <article className="max-w-3xl mx-auto flex flex-col gap-8">
-          {/* Back link */}
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-800 font-medium transition duration-300 self-start"
+            className="inline-flex items-center gap-1.5 font-medium text-sm transition-colors duration-200 self-start"
+            style={{ color: 'var(--brand-mauve)' }}
           >
-            ← Volver al blog
+            <ArrowLeft size={15} /> Volver al blog
           </Link>
 
-          {/* Cover image */}
           {article.coverImage && (
             <img
               src={article.coverImage.url}
               alt={article.coverImage.alternativeText ?? article.title}
               width={article.coverImage.width}
               height={article.coverImage.height}
-              className="w-full max-h-96 object-cover rounded-2xl shadow-md"
+              className="w-full max-h-96 object-cover rounded-3xl shadow-md"
             />
           )}
 
-          {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: 'var(--brand-deep)' }}>
             {article.title}
           </h1>
 
-          {/* Rich text content */}
-          <div
-            className="prose prose-rose max-w-none text-gray-700 leading-relaxed"
-          >
-            <p>
-              {richTextToPlain(article.content)}
-              </p>
+          <div className="prose prose-rose max-w-none text-gray-600 leading-relaxed">
+            <p>{richTextToPlain(article.content)}</p>
           </div>
         </article>
       )}
