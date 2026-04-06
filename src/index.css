@@ -1,23 +1,103 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+@import "tw-animate-css";
 
-/* Brand palette — extracted from logo */
 :root {
-  --brand-blush:    #ffd6ee;   /* lightest pink — backgrounds, tints */
-  --brand-pink:     #fa9ad3;   /* mid pink — accents, borders */
-  --brand-rose:     #e87bbf;   /* deeper pink — hover states */
-  --brand-mauve:    #5e3b53;   /* mid mauve — secondary text, icons */
-  --brand-deep:     #2a0c1f;   /* darkest — headings, hero overlay */
-  --brand-surface:  #fdf4f9;   /* near-white tinted surface */
+  --cream: #fffdf5;
+  --cacao: #3e2723;
+  --cacao-light: #5d4037;
+  --emerald: #047857;
+  --emerald-light: #059669;
+
+  --background: #fffdf5;
+  --foreground: #3e2723;
+  --card: #ffffff;
+  --card-foreground: #3e2723;
+  --popover: #ffffff;
+  --popover-foreground: #3e2723;
+  --primary: #3e2723;
+  --primary-foreground: #fffdf5;
+  --secondary: #f5f0e8;
+  --secondary-foreground: #3e2723;
+  --muted: #f5f0e8;
+  --muted-foreground: #5d4037;
+  --accent: #047857;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e8e0d5;
+  --input: #e8e0d5;
+  --ring: #047857;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-mono: "Geist Mono", monospace;
+  --color-cream: var(--cream);
+  --color-cacao: var(--cacao);
+  --color-cacao-light: var(--cacao-light);
+  --color-emerald: var(--emerald);
+  --color-emerald-light: var(--emerald-light);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 @layer base {
-  html {
-    font-family: 'Inter', system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
+  * {
+    @apply border-border outline-ring/50;
   }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
 
-  h1, h2, h3, h4 {
-    font-family: 'Playfair Display', Georgia, serif;
-  }
+/* Custom scrollbar for carousels */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-snap-x > * {
+  scroll-snap-align: start;
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth image zoom transition */
+.image-zoom {
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-zoom:hover {
+  transform: scale(1.02);
 }
