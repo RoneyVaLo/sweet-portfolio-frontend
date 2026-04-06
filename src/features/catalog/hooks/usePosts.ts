@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { API_Service } from '../services/api';
-import type { Post, UseAsyncResult } from '../types';
+import { useState, useEffect } from "react";
+import { API_Service } from "../../../lib/services/api";
+import type { Post, UseAsyncResult } from "../../../types";
 
 export function usePosts(): UseAsyncResult<Post[]> {
   const [data, setData] = useState<Post[] | null>(null);
