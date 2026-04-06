@@ -1,37 +1,36 @@
-import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import MainLayout from './layouts/MainLayout';
-import HomePage from './pages/HomePage';
-import Skeleton from './components/Skeleton';
-
-const BlogListPage = lazy(() => import('./pages/BlogListPage'));
-const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage'));
+import { useState } from "react";
+import Navbar from "./components/Navbar";
+import ImageModal from "./components/ImageModal";
+// import { Footer } from "./components/footer";
+import { WhatsAppButton } from "./components/WhatsAppButton";
+import { Hero, Footer } from "./features/home";
+import BlogSection from "./features/blog";
+import CatalogSection from "./features/catalog";
 
 export default function App() {
+  const [modalImage, setModalImage] = useState<string | null>(null);
+
+  const openImageModal = (imageUrl: string) => {
+    setModalImage(imageUrl);
+  };
+
+  const closeImageModal = () => {
+    setModalImage(null);
+  };
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route index element={<HomePage />} />
-          <Route
-            path="/blog"
-            element={
-              <Suspense fallback={<Skeleton className="w-full h-96" />}>
-                <BlogListPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/blog/:slug"
-            element={
-              <Suspense fallback={<Skeleton className="w-full h-96" />}>
-                <BlogDetailPage />
-              </Suspense>
-            }
-          />
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
+    <main className="min-h-screen bg-cream">
+      <Navbar />
+      <Hero />
+      <CatalogSection onImageClick={openImageModal} />
+      <BlogSection />
+      <Footer />
+      <WhatsAppButton />
+      <ImageModal
+        imageUrl={modalImage}
+        isOpen={!!modalImage}
+        onClose={closeImageModal}
+      />
+    </main>
   );
 }
