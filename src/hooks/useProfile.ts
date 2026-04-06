@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { API_Service } from '../services/api';
-import type { Profile, UseAsyncResult } from '../types';
+import { useState, useEffect } from "react";
+import { API_Service } from "../lib/services/api";
+import type { Profile, UseAsyncResult } from "../types";
 
 export function useProfile(): UseAsyncResult<Profile> {
   const [data, setData] = useState<Profile | null>(null);

@@ -28,6 +28,7 @@ export interface Profile {
   profileImage: ImageData | null;
   whatsapp: string | null;
   instagram: string | null;
+  facebook: string | null;
   location: string | null;
 }
 
@@ -40,9 +41,7 @@ export interface BlogArticle {
 }
 
 export interface StrapiResponse<T> {
-  data:
-    | { id: number; attributes: T }
-    | Array<{ id: number; attributes: T }>;
+  data: { id: number; attributes: T } | Array<{ id: number; attributes: T }>;
   meta: object;
 }
 
