@@ -105,7 +105,7 @@ export function Hero() {
                 href={whatsappLink || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-3 bg-emerald text-white font-medium rounded-full hover:bg-emerald-light transition-colors duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center px-8 py-3 bg-[#047857] text-white font-medium rounded-full hover:bg-[#059669] transition-colors duration-300 shadow-lg hover:shadow-xl"
               >
                 <svg
                   className="mr-2 w-5 h-5"
