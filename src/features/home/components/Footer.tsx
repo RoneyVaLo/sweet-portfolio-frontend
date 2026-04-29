@@ -122,8 +122,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="border-t border-cream/20 mt-12 pt-8 text-center">
           <p className="text-cream/60 text-sm">
-            © {currentYear} {profile?.name || ""}. Todos los derechos
-            reservados. Hecho con 💚 en Costa Rica.
+            © {currentYear} {profile?.name || ""}.
           </p>
         </div>
       </div>
