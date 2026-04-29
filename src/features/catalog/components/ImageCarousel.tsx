@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { optimizeUrl } from "../../../helpers/optimizeUrl";
 
 const ImageCarousel = ({
   images,
@@ -40,7 +41,7 @@ const ImageCarousel = ({
       >
         <div className="relative w-full h-full">
           <img
-            src={images[0].url}
+            src={optimizeUrl(images[0].url)}
             alt={description}
             loading="eager" // Reemplaza a 'priority'
             fetchPriority="high" // Refuerza la carga prioritaria
@@ -89,7 +90,7 @@ const ImageCarousel = ({
           >
             <div className="relative w-full h-full">
               <img
-                src={image.url}
+                src={optimizeUrl(image.url)}
                 alt={`${description} ${index + 1}`}
                 loading="eager"
                 fetchPriority="high"
