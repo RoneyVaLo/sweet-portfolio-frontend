@@ -1,7 +1,7 @@
 import { useProfile } from "../../../hooks/useProfile";
 import { buildWhatsAppLink } from "../../../lib/services/api";
 
-export function Footer() {
+export function Footer({ showBlog = true }: { showBlog?: boolean }) {
   const { data: profile } = useProfile();
   const currentYear = new Date().getFullYear();
 
@@ -57,14 +57,16 @@ export function Footer() {
                   Catálogo
                 </a>
               </li>
-              <li>
-                <a
-                  href="#blog"
-                  className="text-cream/80 hover:text-emerald-light transition-colors duration-300"
-                >
-                  Blog
-                </a>
-              </li>
+              {showBlog && (
+                <li>
+                  <a
+                    href="#blog"
+                    className="text-cream/80 hover:text-emerald-light transition-colors duration-300"
+                  >
+                    Blog
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
 

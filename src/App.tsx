@@ -6,9 +6,11 @@ import { WhatsAppButton } from "./components/WhatsAppButton";
 import { Hero, Footer } from "./features/home";
 import BlogSection from "./features/blog";
 import CatalogSection from "./features/catalog";
+import { useBlog } from "./features/blog/hooks/useBlog";
 
 export default function App() {
   const [modalImage, setModalImage] = useState<string | null>(null);
+  const { data: blogs, loading: blogsLoading } = useBlog();
 
   const openImageModal = (imageUrl: string) => {
     setModalImage(imageUrl);
@@ -20,11 +22,11 @@ export default function App() {
 
   return (
     <main className="min-h-screen bg-cream">
-      <Navbar />
+      <Navbar showBlog={!blogsLoading && !!blogs && blogs.length > 0} />
       <Hero />
       <CatalogSection onImageClick={openImageModal} />
       <BlogSection />
-      <Footer />
+      <Footer showBlog={!blogsLoading && !!blogs && blogs.length > 0} />
       <WhatsAppButton />
       <ImageModal
         imageUrl={modalImage}

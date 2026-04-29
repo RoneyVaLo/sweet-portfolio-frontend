@@ -15,6 +15,10 @@ export function BlogSection() {
     return <BlogSkeleton />;
   }
 
+  if (!blogs || blogs.length === 0) {
+    return null;
+  }
+
   return (
     <>
       <section id="blog" className="py-20 bg-secondary">

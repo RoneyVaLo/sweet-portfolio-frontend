@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 
-const navLinks = [
+const allNavLinks = [
   { href: "#inicio", label: "Inicio" },
   { href: "#catalogo", label: "Catálogo" },
   { href: "#blog", label: "Blog" },
   { href: "#contacto", label: "Contacto" },
 ];
 
-const Navbar = () => {
+const Navbar = ({ showBlog = true }: { showBlog?: boolean }) => {
+  const navLinks = showBlog
+    ? allNavLinks
+    : allNavLinks.filter((l) => l.href !== "#blog");
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
