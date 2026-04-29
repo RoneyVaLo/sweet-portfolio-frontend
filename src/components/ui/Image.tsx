@@ -1,3 +1,4 @@
+import { optimizeUrl } from "../../helpers/optimizeUrl";
 import { cn } from "../../lib/utils";
 
 interface ImageProps {
@@ -11,7 +12,7 @@ const Image = ({ src, alt, className, sizes }: ImageProps) => {
   return (
     <div className="relative w-full h-full">
       <img
-        src={src}
+        src={optimizeUrl(src)}
         alt={alt}
         loading="eager"
         fetchPriority="high"

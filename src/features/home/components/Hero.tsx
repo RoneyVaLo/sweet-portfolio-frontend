@@ -1,3 +1,4 @@
+import { optimizeUrl } from "../../../helpers/optimizeUrl";
 import { richTextToPlain } from "../../../helpers/richTextToPlain";
 import { useProfile } from "../../../hooks/useProfile";
 import { buildWhatsAppLink } from "../../../lib/services/api";
@@ -10,7 +11,7 @@ export function Hero() {
     ? buildWhatsAppLink(profile.whatsapp, "Hola, me gustaría hacer un pedido")
     : null;
 
-  const bgImage = profile?.profileImage?.url;
+  const bgImage = optimizeUrl(profile?.profileImage?.url || "");
 
   if (loading) {
     return <HeroSkeleton />;

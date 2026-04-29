@@ -5,6 +5,7 @@ import Image from "../../../components/ui/Image";
 import { richTextToPlain } from "../../../helpers/richTextToPlain";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useBlog } from "../hooks/useBlog";
+import { optimizeUrl } from "../../../helpers/optimizeUrl";
 
 export function BlogSection() {
   const [selectedBlog, setSelectedBlog] = useState<BlogArticle | null>(null);
@@ -40,7 +41,7 @@ export function BlogSection() {
               >
                 <div className="relative h-48 md:h-56 overflow-hidden">
                   <Image
-                    src={blog?.coverImage?.url || ""}
+                    src={optimizeUrl(blog?.coverImage?.url || "")}
                     alt={blog.title}
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -94,7 +95,7 @@ export function BlogSection() {
                 {/* Header Image */}
                 <div className="relative h-56 md:h-72 overflow-hidden">
                   <Image
-                    src={selectedBlog?.coverImage?.url || ""}
+                    src={optimizeUrl(selectedBlog?.coverImage?.url || "")}
                     alt={selectedBlog.title}
                     className="object-cover"
                     sizes="(max-width: 768px) 95vw, 768px"
