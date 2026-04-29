@@ -40,7 +40,7 @@ export function CatalogSection({ onImageClick }: CatalogProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] lg:auto-rows-[250px] gap-3 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] lg:auto-rows-[250px] gap-3 md:gap-4 grid-flow-dense">
           {posts?.map((post, index) => (
             <div
               key={post.id}
