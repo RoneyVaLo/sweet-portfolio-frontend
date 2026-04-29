@@ -1,1 +1,2 @@
-export { FAQ } from "./FAQSection";
+export { FAQ } from "./FaqSection";
+export { FaqSkeleton } from "./FaqSkeleton";

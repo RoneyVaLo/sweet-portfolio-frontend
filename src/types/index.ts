@@ -32,6 +32,12 @@ export interface Profile {
   location: string | null;
 }
 
+export interface FaqItem {
+  id: number;
+  question: string;
+  answer: string;
+}
+
 export interface BlogArticle {
   id: number;
   title: string;

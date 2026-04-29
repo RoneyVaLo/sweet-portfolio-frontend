@@ -2,6 +2,7 @@ import type {
   Post,
   Profile,
   BlogArticle,
+  FaqItem,
   StrapiResponse,
   ImageData,
 } from "../../types";
@@ -112,6 +113,27 @@ export const API_Service = {
         coverImage: normalized.coverImage
           ? normalizeImage(normalized.coverImage)
           : null,
+      };
+    });
+  },
+
+  async getFaqs(): Promise<FaqItem[]> {
+    const response = await apiFetch<{ data: Record<string, unknown>[] }>(
+      "/api/faqs?sort=order:asc",
+    );
+    const items = Array.isArray(response.data)
+      ? response.data
+      : [response.data];
+    return items.map((item) => {
+      const normalized = normalizeStrapi(
+        item as { id: number } & Record<string, unknown>,
+      );
+      return {
+        id: normalized.id,
+        question:
+          ((normalized as Record<string, unknown>).question as string) ?? "",
+        answer:
+          ((normalized as Record<string, unknown>).answer as string) ?? "",
       };
     });
   },
