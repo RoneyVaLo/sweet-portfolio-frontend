@@ -7,6 +7,7 @@ import { Hero, Footer } from "./features/home";
 import BlogSection from "./features/blog";
 import CatalogSection from "./features/catalog";
 import { useBlog } from "./features/blog/hooks/useBlog";
+import { FAQ } from "./features/faq";
 
 export default function App() {
   const [modalImage, setModalImage] = useState<string | null>(null);
@@ -26,6 +27,7 @@ export default function App() {
       <Hero />
       <CatalogSection onImageClick={openImageModal} />
       <BlogSection />
+      <FAQ />
       <Footer showBlog={!blogsLoading && !!blogs && blogs.length > 0} />
       <WhatsAppButton />
       <ImageModal

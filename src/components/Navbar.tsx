@@ -4,6 +4,7 @@ const allNavLinks = [
   { href: "#inicio", label: "Inicio" },
   { href: "#catalogo", label: "Catálogo" },
   { href: "#blog", label: "Blog" },
+  { href: "#faq", label: "FAQ" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -82,13 +83,13 @@ const Navbar = ({ showBlog = true }: { showBlog?: boolean }) => {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-full ${
-                  activeSection === link.href.replace("#", "")
+                  activeSection.toLowerCase() === link.href.replace("#", "")
                     ? "text-emerald"
                     : "text-cacao hover:text-emerald"
                 }`}
               >
                 {link.label}
-                {activeSection === link.href.replace("#", "") && (
+                {activeSection.toLowerCase() === link.href.replace("#", "") && (
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-emerald rounded-full" />
                 )}
               </a>

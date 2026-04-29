@@ -67,6 +67,14 @@ export function Footer({ showBlog = true }: { showBlog?: boolean }) {
                   </a>
                 </li>
               )}
+              <li>
+                <a
+                  href="#faq"
+                  className="text-cream/80 hover:text-emerald-light transition-colors duration-300"
+                >
+                  Preguntas Frecuentes
+                </a>
+              </li>
             </ul>
           </div>
 
