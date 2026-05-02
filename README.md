@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# 🍰 Sweet Portfolio Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una elegante aplicación web frontend construida con **React** y **Vite** para un portfolio y catálogo de productos. Diseñada con componentes modernos de **Radix UI** y estilos impecables con **Tailwind CSS**.
 
-Currently, two official plugins are available:
+## 🌟 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Portada Heroica** - Sección de presentación personalizada con imagen de perfil
+- **Catálogo de Productos** - Galería de imágenes con carrusel interactivo
+- **Blog Integrado** - Sección dinámmica de artículos y contenido
+- **Preguntas Frecuentes (FAQ)** - Acordeones accesibles para respuestas comunes
+- **Modal de Imágenes** - Visualización ampliada de productos
+- **Botón de WhatsApp** - Integración directa para contacto
+- **Navbar Responsivo** - Navegación adaptativa con enlaces a secciones
+- **Pie de Página** - Footer con información completa
+- **Carga Progresiva** - Componentes esqueleto (skeleton) para mejor UX
+- **Optimización de Imágenes** - Redimensionamiento automático de URLs
+- **Diseño Responsivo** - Totalmente adaptable a dispositivos móviles y desktop
 
-## React Compiler
+## 🛠️ Tecnologías
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Frontend
 
-## Expanding the ESLint configuration
+- **React 19** - Biblioteca de interfaz de usuario
+- **TypeScript** - Tipado estático para mayor seguridad
+- **Vite** - Build tool ultrarrápido
+- **Tailwind CSS** - Framework de utilidades de CSS
+- **Radix UI** - Componentes sin estilos y accesibles
+- **Lucide React** - Iconografía moderna
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Formularios y Validación
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React Hook Form** - Gestión eficiente de formularios
+- **Zod** - Validación de esquemas de datos
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Herramientas
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **ESLint** - Linting y análisis de código
+- **Vitest** - Framework de testing
+- **PNPM** - Gestor de paquetes rápido
+
+## 📋 Requisitos Previos
+
+- Node.js 18+ (recomendado 20+)
+- PNPM 8+
+
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── components/          # Componentes reutilizables globales
+│   ├── ImageModal.tsx   # Modal para visualizar imágenes
+│   ├── Navbar.tsx       # Barra de navegación
+│   ├── WhatsAppButton.tsx
+│   └── ui/              # Componentes UI base
+├── features/            # Características principales (domain-driven)
+│   ├── blog/            # Sección de blog
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── index.ts
+│   ├── catalog/         # Catálogo de productos
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── index.ts
+│   ├── faq/             # Preguntas frecuentes
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── index.ts
+│   └── home/            # Página de inicio
+├── hooks/               # Hooks personalizados globales
+├── lib/
+│   ├── services/        # Servicios API
+│   └── utils.ts         # Utilidades generales
+├── helpers/             # Funciones auxiliares
+├── types/               # Definiciones de tipos TypeScript
+└── App.tsx              # Componente principal
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔌 Integración con API
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+El proyecto se conecta con una API Strapi para obtener datos dinámicos:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Perfil de usuario** - Nombre, imagen, información de contacto
+- **Productos/Catálogo** - Imágenes y detalles
+- **Artículos de Blog** - Contenido y metadatos
+- **FAQ** - Preguntas y respuestas
+
+## 📱 Optimización de Imágenes
+
+El proyecto incluye utilidades para optimizar URLs de imágenes automáticamente, proporcionando mejor rendimiento en diferentes dispositivos.
+
+---
